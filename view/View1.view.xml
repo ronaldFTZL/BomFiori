@@ -1,0 +1,353 @@
+<mvc:View controllerName="ZFiori.ZFCIApp.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" busyIndicatorDelay="0" xmlns:t="sap.ui.table">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<Panel expandable="true" expanded="true">
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<Title text="Filtros"/>
+									<ToolbarSpacer/>
+									<Button text="Aplicar" icon="sap-icon://refresh" press="onFilter"/>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<form:Form editable="true">
+									<form:formContainers>
+										<form:FormContainer>
+											<form:formElements>
+												<form:FormElement label="Material">
+													<form:fields>
+														<MultiInput id="multiInput" showValueHelp="false" tokenUpdate="updateToken" suggestionItems="{/MaterialSet}">
+															<core:Item key="{Number}" text="{Number}"/>
+														</MultiInput>
+													</form:fields>
+												</form:FormElement>
+												<form:FormElement label="Centro">
+													<form:fields>
+														<ComboBox id="cbCentro" selectedKey="IH01">
+															<items>
+																<core:Item text="IH01" enabled="true" key="IH01"/>
+															</items>
+														</ComboBox>
+													</form:fields>
+												</form:FormElement>
+												<form:FormElement>
+													<form:fields>
+														<CheckBox id="cbMaterialNovo" text="Material Novo"/>
+													</form:fields>
+												</form:FormElement>
+												<form:FormElement>
+													<form:fields>
+														<CheckBox id="cbSomenteExibir" text="Somente exibir os dados gravados" select="onSelect"/>
+													</form:fields>
+												</form:FormElement>
+												<form:FormElement id="formPeriodo" visible="false" label="Período de Exibição">
+													<form:fields>
+														<Input id="inptPeriodo" placeholder="formato (MMAAAA)" type="Number" maxLength="6"/>
+													</form:fields>
+												</form:FormElement>
+											</form:formElements>
+										</form:FormContainer>
+									</form:formContainers>
+									<form:layout>
+										<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+									</form:layout>
+								</form:Form>
+							</content>
+						</Panel>
+						<ScrollContainer vertical="false" horizontal="true">
+							<!--<t:Table id="dadosMateriaisNew" selectionMode="MultiToggle" rows="{path:'Materiais>/'}" ariaLabelledBy="title" class="sapUiResponsiveMargin">-->
+							<!--	<t:columns>-->
+							<!--		<t:Column width="11rem">-->
+							<!--			<Label text="Período"/>-->
+							<!--			<t:template>-->
+							<!--				<ObjectIdentifier title="{Materiais>Periodo}" titleActive="false" visible="true"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Centro"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>Centro}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Material"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>Material}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Descricao"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>DescricaoMaterial}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Data Producao"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{ path: 'Materiais>DataProducao', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' }}"-->
+							<!--					width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Quanridade Componente"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>QuantidadeComponente}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Componente"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>MaterialComponente}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Descricao Componente"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>DescricaoComponente}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="NMC"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>CodigoControle}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Quantidade Produzida"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>QuantidadeProduzida}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Origem Material"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>OrigemMaterial}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="situação Tributaria"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>SituacaoTributariaICMS}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Origem Determinada"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>OrigemDeterminada}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Origem Determinada"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>Importacao}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Data Ultima Compra"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{ path: 'Materiais>DataUltimaCompra', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' }}"-->
+							<!--					width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Valor Compra"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>ValorCompra}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Destino Venda"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>DestinoVenda}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Valor Compra imp"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>ValorCompraImportacao}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Custo Unitario Compra"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>CustoUnitarioCompra}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Custo Unitario Venda"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>ValorUnitarioVenda}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Custo Unitario Venda"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>ValorUnitarioFCI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="FCI"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{Materiais>FCI}" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--		<t:Column width="18rem">-->
+							<!--			<Label text="Existe Similar"/>-->
+							<!--			<t:template>-->
+							<!--				<Text text="{= ${Materiais>ExisteSimilar} ? ${i18n>textoSim} : ${i18n>textoNao} }" width="auto" wrapping="false" textAlign="Begin"-->
+							<!--					textDirection="Inherit"/>-->
+							<!--			</t:template>-->
+							<!--		</t:Column>-->
+							<!--	</t:columns>-->
+							<!--</t:Table>-->
+							<!--1-->
+							<!--1-->
+							<!--1-->
+							<!--1-->
+							<!--1-->
+							<!--1-->
+							<!--1-->
+							<Table id="dadosMateriais" noDataText="No data" fixedLayout="false" items="{path:'Materiais>/Materiais'}">
+								<headerToolbar>
+									<OverflowToolbar>
+										<ToolbarSpacer/>
+										<Button id="btnExportar" text="Exportar Planilha" icon="sap-icon://excel-attachment" enabled="false" press="onExport"/>
+										<Button id="btnRegistrar" text="Registrar os Dados" icon="sap-icon://save" enabled="false" press="onSave"/>
+									</OverflowToolbar>
+								</headerToolbar>
+								<columns>
+									<Column styleClass="cellBorderLeft cellBorderRight" hAlign="Center">
+										<Text text="Período" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Centro" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Produto" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Descrição" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Dt.Ultima Produção" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Qtd.Produzida" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Componente" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Descr.Compon." maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="NCM Componente" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Qt.Compon.Util." maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Origem Compon." maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Sit.Trib.Compon." maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Origem Determ." maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="% Importação" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Ultima compra Comp." maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Custo Ultima Compra" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Valor Total Ult.Comp." maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Ultima Venda" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Qtde.Ultima Venda" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Preço de Venda" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Destino Venda" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Vlr.Ultima Compra Imp." maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Custo Unitario" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Preço Unit.Venda" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Valor Unit. FCI" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="FCI %" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Existe Similar ?" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Conversão" maxLines="1"/>
+									</Column>
+									<Column styleClass="cellBorderRight" hAlign="Center">
+										<Text text="Chave FCI" maxLines="1"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Active">
+										<cells>
+											<Text text="{Materiais>Periodo}" maxLines="1"/>
+											<Text text="{Materiais>Centro}" maxLines="1"/>
+											<Text text="{Materiais>Material}" maxLines="1"/>
+											<Text text="{Materiais>DescricaoMaterial}" maxLines="1"/>
+											<Text text="{ path: 'Materiais>DataProducao', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' }}"
+												maxLines="1"/>
+											<Text text="{Materiais>QuantidadeComponente}" maxLines="1"/>
+											<Text text="{Materiais>MaterialComponente}" maxLines="1"/>
+											<Text text="{Materiais>DescricaoComponente}" maxLines="1"/>
+											<Text text="{Materiais>CodigoControle}" maxLines="1"/>
+											<Text text="{Materiais>QuantidadeProduzida}" maxLines="1"/>
+											<Text text="{Materiais>OrigemMaterial}" maxLines="1"/>
+											<Text text="{Materiais>SituacaoTributariaICMS}" maxLines="1"/>
+											<Text text="{Materiais>OrigemDeterminada}" maxLines="1"/>
+											<Text text="{Materiais>Importacao}" maxLines="1"/>
+											<Text text="{ path: 'Materiais>DataUltimaCompra', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' }}"
+												maxLines="1"/>
+											<Text text="{Materiais>ValorCompra}" maxLines="1"/>
+											<Text text="{Materiais>TotalUltimaCompra}" maxLines="1"/>
+											<Text text="{ path: 'Materiais>DataVenda', type: 'sap.ui.model.odata.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' }}" maxLines="1"/>
+											<Text text="{Materiais>QuantidadeVenda}" maxLines="1"/>
+											<Text text="{Materiais>ValorVenda}" maxLines="1"/>
+											<Text text="{Materiais>DestinoVenda}" maxLines="1"/>
+											<Text text="{Materiais>ValorCompraImportacao}" maxLines="1"/>
+											<Text text="{Materiais>CustoUnitarioCompra}" maxLines="1"/>
+											<Text text="{Materiais>ValorUnitarioVenda}" maxLines="1"/>
+											<Text text="{Materiais>ValorUnitarioFCI}" maxLines="1"/>
+											<Text text="{Materiais>FCI}" maxLines="1"/>
+											<Text text="{= ${Materiais>ExisteSimilar} ? ${i18n>textoSim} : ${i18n>textoNao} }" maxLines="1"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</ScrollContainer>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
